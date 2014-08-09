@@ -3,7 +3,8 @@
 # Script to maintain ip rules on the host when starting up a transparent
 # proxy server for docker.
 
-CACHEDIR="/cache/proxy/squid3" # Change this to place the cache somewhere else
+CACHEDIR=${CACHEDIR:-"/cache/proxy/squid3"} # Change this to place the cache somewhere else
+echo "Using CACHEDIR=$CACHEDIR"
 
 set -e
 
