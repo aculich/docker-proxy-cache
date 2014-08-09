@@ -14,7 +14,7 @@ set -e
 [ -z ${RUNNING_DRUN} ] && {
   RUN_DOCKER="docker run"
   CONTAINER_NAME='proxy'
-  CONTAINER_IMAGE='docker-proxy-cache:utopic'
+  CONTAINER_IMAGE='docker-proxy-cache'
   #docker images | grep "^${CONTAINER_IMAGE} " >/dev/null || docker build --rm -t ${CONTAINER_IMAGE} "$(dirname $0)"
 }
 APTFILE="/etc/apt/apt.conf.d/99${CONTAINER_NAME}"
