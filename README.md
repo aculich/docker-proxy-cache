@@ -1,4 +1,4 @@
-1. Install docker (assuming you are using BCE): `sudo apt-get install -y docker.io`
+1. Install docker (assuming you are using [BCE in VirtualBox](http://collaboratool.berkeley.edu/using-virtualbox.html)): `sudo apt-get install -y docker.io`
 2. Give yourself permissions to run docker: `sudo adduser $USER docker`
 3. Restart your shell/GUI or: `newgrp docker`
 4. Pull an ubuntu docker image in the background while you complete
