@@ -17,16 +17,19 @@ set -e
   CONTAINER_IMAGE='docker-proxy-cache'
   #docker images | grep "^${CONTAINER_IMAGE} " >/dev/null || docker build --rm -t ${CONTAINER_IMAGE} "$(dirname $0)"
 }
-APTFILE="/etc/apt/apt.conf.d/99${CONTAINER_NAME}"
+APTCONFDIR="/etc/apt/apt.conf.d"
+APTFILE="${APTCONFDIR}/99${CONTAINER_NAME}"
 
 start_routing () {
   # Add a new route table that routes everything marked through the new container
   # workaround boot2docker issue #367
   # https://github.com/boot2docker/boot2docker/issues/367
-  sudo su -c "cat > ${APTFILE}" <<EOF
+  if [ -d ${APTCONFDIR} ]; then
+    sudo su -c "cat > ${APTFILE}" <<EOF
 Acquire::http::Proxy "http://${IPADDR}:3128";
 EOF
-  cat ${APTFILE}
+    cat ${APTFILE}
+  fi
   [ -d /etc/iproute2 ] || sudo mkdir -p /etc/iproute2
   if [ ! -e /etc/iproute2/rt_tables ]; then
     if [ -f /usr/local/etc/rt_tables ]; then
